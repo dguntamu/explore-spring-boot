@@ -7,6 +7,8 @@ import explore.spring.boot.explore.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,20 +26,43 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDTO getEmployee(Integer empId) {
         Optional<EmployeeEntity> empFromDB = employeeDAO.getEmployee(empId);
-        EmployeeDTO empDTO = getEmployeeDTO(empFromDB);
-        empDTO.setEmpId(empId);
+        EmployeeDTO empDTO = new EmployeeDTO();
+        if (empFromDB.isPresent()) {
+            empDTO = getEmployeeDTO(empFromDB.get());
+            empDTO.setEmpId(empId);
+        }
+
         return empDTO;
     }
 
-    private EmployeeDTO getEmployeeDTO(Optional<EmployeeEntity> empFromDB) {
-        EmployeeDTO employeeDTO = new EmployeeDTO();
-        if(empFromDB.isPresent()){
-            EmployeeEntity entity = empFromDB.get();
-            employeeDTO.setEmpName(entity.getEmpName());
-            employeeDTO.setEmpAddress(entity.getEmpAddress());
-            employeeDTO.setEmpSal(entity.getEmpSal());
-            employeeDTO.setEmpDeptNo(entity.getEmpDept());
+    @Override
+    public void deleteEmployeeById(Integer empId) {
+        employeeDAO.deleteEmployeeById(empId);
+    }
+
+    @Override
+    public EmployeeDTO updateEmpployee(EmployeeDTO employeeDTO) {
+        EmployeeEntity employeeEntity = getEmployeeEntity(employeeDTO);
+        employeeDAO.updateEmpployee(employeeEntity);
+        return employeeDTO;
+    }
+
+    @Override
+    public List<EmployeeDTO> finAllEmployees() {
+        List<EmployeeDTO> allEmployees = new ArrayList<>();
+        List<EmployeeEntity> employeeEntities = employeeDAO.findAllEmployees();
+        for (EmployeeEntity employeeEntity : employeeEntities) {
+            allEmployees.add(getEmployeeDTO(employeeEntity));
         }
+        return allEmployees;
+    }
+
+    private EmployeeDTO getEmployeeDTO(EmployeeEntity empFromDB) {
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setEmpName(empFromDB.getEmpName());
+        employeeDTO.setEmpAddress(empFromDB.getEmpAddress());
+        employeeDTO.setEmpSal(empFromDB.getEmpSal());
+        employeeDTO.setEmpDeptNo(empFromDB.getEmpDept());
         return employeeDTO;
     }
 
