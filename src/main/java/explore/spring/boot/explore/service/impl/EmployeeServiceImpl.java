@@ -7,6 +7,8 @@ import explore.spring.boot.explore.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -17,6 +19,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void addEmployee(EmployeeDTO employee) {
         EmployeeEntity employeeEntity = getEmployeeEntity(employee);
         employeeDAO.addEmployee(employeeEntity);
+    }
+
+    @Override
+    public EmployeeDTO getEmployee(Integer empId) {
+        Optional<EmployeeEntity> empFromDB = employeeDAO.getEmployee(empId);
+        EmployeeDTO empDTO = getEmployeeDTO(empFromDB);
+        empDTO.setEmpId(empId);
+        return empDTO;
+    }
+
+    private EmployeeDTO getEmployeeDTO(Optional<EmployeeEntity> empFromDB) {
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        if(empFromDB.isPresent()){
+            EmployeeEntity entity = empFromDB.get();
+            employeeDTO.setEmpName(entity.getEmpName());
+            employeeDTO.setEmpAddress(entity.getEmpAddress());
+            employeeDTO.setEmpSal(entity.getEmpSal());
+            employeeDTO.setEmpDeptNo(entity.getEmpDept());
+        }
+        return employeeDTO;
     }
 
     private EmployeeEntity getEmployeeEntity(EmployeeDTO employee) {
