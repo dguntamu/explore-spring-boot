@@ -2,6 +2,9 @@ package explore.spring.boot.explore.controller;
 
 import explore.spring.boot.explore.model.EmployeeDTO;
 import explore.spring.boot.explore.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +14,7 @@ import java.util.List;
 
 @RestController
 public class ExploreSpringBootController {
-
+    Logger logger = LoggerFactory.getLogger(ExploreSpringBootController.class);
     @Autowired
     private EmployeeService employeeService;
 
@@ -22,8 +25,12 @@ public class ExploreSpringBootController {
 
     @PostMapping("/emp")
     public ResponseEntity<EmployeeDTO> addEmployee(@RequestBody EmployeeDTO employeeDTO){
-        System.out.println("In Controller..");
+        logger.debug("Initiated Employee Onboarding...");
+        if(employeeDTO.getEmpName().equals("dj")){
+            throw new RuntimeException();
+        }
         employeeService.addEmployee(employeeDTO);
+        logger.info("Employee '{}' Onboarded successfully",employeeDTO.getEmpName());
         return ResponseEntity.status(HttpStatus.OK).body(employeeDTO);
     }
 
