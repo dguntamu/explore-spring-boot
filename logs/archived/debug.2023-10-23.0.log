@@ -1,0 +1,24 @@
+2023-10-23 15:25:59 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Starting ExploreSpringBootApplication using Java 21 with PID 4152 (/Users/dhananjay/Documents/intellij/projects/explore-spring-boot/target/classes started by dhananjay in /Users/dhananjay/Documents/intellij/projects/explore-spring-boot)
+2023-10-23 15:25:59 [restartedMain] DEBUG e.s.b.e.ExploreSpringBootApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2023-10-23 15:25:59 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - No active profile set, falling back to 1 default profile: "default"
+2023-10-23 15:26:01 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Started ExploreSpringBootApplication in 2.081 seconds (process running for 2.482)
+2023-10-23 15:28:08 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Starting ExploreSpringBootApplication using Java 21 with PID 4183 (/Users/dhananjay/Documents/intellij/projects/explore-spring-boot/target/classes started by dhananjay in /Users/dhananjay/Documents/intellij/projects/explore-spring-boot)
+2023-10-23 15:28:08 [restartedMain] DEBUG e.s.b.e.ExploreSpringBootApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2023-10-23 15:28:08 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - No active profile set, falling back to 1 default profile: "default"
+2023-10-23 15:28:10 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Started ExploreSpringBootApplication in 1.983 seconds (process running for 2.407)
+2023-10-23 15:29:30 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Starting ExploreSpringBootApplication using Java 21 with PID 4222 (/Users/dhananjay/Documents/intellij/projects/explore-spring-boot/target/classes started by dhananjay in /Users/dhananjay/Documents/intellij/projects/explore-spring-boot)
+2023-10-23 15:29:30 [restartedMain] DEBUG e.s.b.e.ExploreSpringBootApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2023-10-23 15:29:30 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - No active profile set, falling back to 1 default profile: "default"
+2023-10-23 15:29:32 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Started ExploreSpringBootApplication in 1.953 seconds (process running for 2.351)
+2023-10-23 15:37:29 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Starting ExploreSpringBootApplication using Java 21 with PID 4288 (/Users/dhananjay/Documents/intellij/projects/explore-spring-boot/target/classes started by dhananjay in /Users/dhananjay/Documents/intellij/projects/explore-spring-boot)
+2023-10-23 15:37:29 [restartedMain] DEBUG e.s.b.e.ExploreSpringBootApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2023-10-23 15:37:29 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - No active profile set, falling back to 1 default profile: "default"
+2023-10-23 15:37:31 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Started ExploreSpringBootApplication in 1.94 seconds (process running for 2.356)
+2023-10-23 15:38:38 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Starting ExploreSpringBootApplication using Java 21 with PID 4300 (/Users/dhananjay/Documents/intellij/projects/explore-spring-boot/target/classes started by dhananjay in /Users/dhananjay/Documents/intellij/projects/explore-spring-boot)
+2023-10-23 15:38:38 [restartedMain] DEBUG e.s.b.e.ExploreSpringBootApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2023-10-23 15:38:38 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - No active profile set, falling back to 1 default profile: "default"
+2023-10-23 15:38:40 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Started ExploreSpringBootApplication in 1.903 seconds (process running for 2.278)
+2023-10-23 15:41:01 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Starting ExploreSpringBootApplication using Java 21 with PID 4318 (/Users/dhananjay/Documents/intellij/projects/explore-spring-boot/target/classes started by dhananjay in /Users/dhananjay/Documents/intellij/projects/explore-spring-boot)
+2023-10-23 15:41:01 [restartedMain] DEBUG e.s.b.e.ExploreSpringBootApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2023-10-23 15:41:01 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - No active profile set, falling back to 1 default profile: "default"
+2023-10-23 15:41:03 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Started ExploreSpringBootApplication in 1.918 seconds (process running for 2.284)
