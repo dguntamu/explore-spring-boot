@@ -3,13 +3,15 @@ package explore.spring.boot.explore.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import static jakarta.persistence.CascadeType.ALL;
+
 @Entity
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="emp")
+@Table(name = "emp")
 public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,4 +29,6 @@ public class EmployeeEntity {
 
     @Column(name = "emp_dept")
     private Integer empDept;
+    /*@OneToOne(targetEntity=Address.class, cascade=ALL, mappedBy="emp_id", fetch=FetchType.LAZY)
+    private Address address;*/
 }

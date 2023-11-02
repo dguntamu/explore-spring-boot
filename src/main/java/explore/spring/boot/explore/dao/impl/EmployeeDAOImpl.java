@@ -2,10 +2,13 @@ package explore.spring.boot.explore.dao.impl;
 
 import explore.spring.boot.explore.dao.EmployeeDAO;
 import explore.spring.boot.explore.entity.EmployeeEntity;
+import explore.spring.boot.explore.model.EmployeeDTO;
 import explore.spring.boot.explore.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,4 +46,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public List<EmployeeEntity> findAllEmployees() {
         return employeeRepository.findAll();
     }
+
+    @Override
+    public List<EmployeeEntity> findByEmpAddress(String empAddress) {
+        return employeeRepository.findByEmpAddress(empAddress);
+    }
+
+    @Override
+    public List<EmployeeEntity> findByEmpAddressAndEmpDept(String empAddress, Integer empDept) {
+        return employeeRepository.findByEmpAddressAndEmpDept(empAddress,empDept);
+    }
+
 }

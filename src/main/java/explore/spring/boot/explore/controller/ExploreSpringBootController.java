@@ -1,8 +1,8 @@
 package explore.spring.boot.explore.controller;
 
+import explore.spring.boot.explore.aop.Loggable;
 import explore.spring.boot.explore.model.EmployeeDTO;
 import explore.spring.boot.explore.service.EmployeeService;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +35,7 @@ public class ExploreSpringBootController {
     }
 
     @GetMapping("/emp/{empId}")
+    @Loggable //Step-2: Appllying Loggable
     public ResponseEntity<EmployeeDTO> getEmployee(@PathVariable Integer empId){
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.getEmployee(empId));
     }
@@ -42,7 +43,7 @@ public class ExploreSpringBootController {
     @DeleteMapping("/emp/{empId}")
     public void deleteEmployeeById(@PathVariable Integer empId){
      employeeService.deleteEmployeeById(empId);
-        System.out.println("Delelte employee with ID "+empId);
+        System.out.println("Delete employee with ID "+empId);
     }
 
     @PutMapping("/emp")
@@ -53,5 +54,17 @@ public class ExploreSpringBootController {
     @GetMapping("/emps")
     public ResponseEntity<List<EmployeeDTO>> getEmployees(){
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.finAllEmployees());
+    }
+
+    @GetMapping("/emp-address/{empAddress}")
+    @Loggable //Step-2: Applying Loggable
+    public ResponseEntity<List<EmployeeDTO>> findEmployeeByAddress(@PathVariable String empAddress){
+        return ResponseEntity.status(HttpStatus.OK).body(employeeService.findByEmpAddress(empAddress));
+    }
+
+    @GetMapping("/emp-by-address-dept/{empAddress}/{empDept}")
+    @Loggable //Step-2: Applying Loggable
+    public ResponseEntity<List<EmployeeDTO>> findEmployeeByAddressAndEmpDept(@PathVariable String empAddress,@PathVariable Integer empDept){
+        return ResponseEntity.status(HttpStatus.OK).body(employeeService.findByEmpAddressAndEmpDept(empAddress,empDept));
     }
 }
