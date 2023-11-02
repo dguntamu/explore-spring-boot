@@ -1,6 +1,5 @@
 package explore.spring.boot.explore.model;
 
-import explore.spring.boot.explore.entity.Address;
 import lombok.*;
 
 @Data
@@ -11,6 +10,5 @@ public class EmployeeDTO {
     private String empAddress;
     private String empSal;
     private Integer empDeptNo;
-    private Address address;
 
 }
