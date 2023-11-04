@@ -1,9 +1,8 @@
 package explore.spring.boot.explore.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
 
-import static jakarta.persistence.CascadeType.ALL;
+import javax.persistence.*;
 
 @Entity
 @Data
