@@ -6,9 +6,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 
 @EnableWebSecurity(debug = true)
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
@@ -17,17 +21,36 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //Creating user
+        UserDetails chehel = User
+                .withUsername("chahel")
+                //.password("{bcrypt}$2a$10$jm8looy2si0.8tAl6rHkuuqPQHFX9QXQqQvOl9pePhQS6mJNr8NgO") //password : chahel123 (NOT working)
+                .password("chahel123") //Changed to NoOpPasswordEncoder from Bcrypt
+                .roles("ADMIN","USER")
+                .build();
+
+        //Saving user
+        InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
+        inMemoryUserDetailsManager.createUser(chehel);
+
+        //Informing through which service savign the user (InMemoryUserDetailsManager)
+        auth.userDetailsService(inMemoryUserDetailsManager);
+    }
+
+    //Working ONE
+    /*@Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder) //Created @Bean definition in MyAppConfig.java, check for implementation class.
                 .withUser("dhanu")
                 //.password("dhanu123")// this is for NoOpPasswordEncoder.
-                /*.password("{bcrypt}$2a$10$zthK5GVCFrW0gxyydg.qe.7H8ntEFztT1QM3tBUIi0ALPaNVgPouq") //its a BCrypted password for 'dhanu123'
-                 //https://www.bcryptcalculator.com/encode generated from here.*/
+                *//*.password("{bcrypt}$2a$10$zthK5GVCFrW0gxyydg.qe.7H8ntEFztT1QM3tBUIi0ALPaNVgPouq") //its a BCrypted password for 'dhanu123'
+                 //https://www.bcryptcalculator.com/encode generated from here.*//*
                 //its a BCrypted password for 'dhanu123' bcz impl is Bcrypt in MyAppConfig.java
                 .password("$2a$10$zthK5GVCFrW0gxyydg.qe.7H8ntEFztT1QM3tBUIi0ALPaNVgPouq")
                 .roles("admin");
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
