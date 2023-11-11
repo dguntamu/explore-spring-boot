@@ -26,6 +26,9 @@ public class EmployeeEntity {
     @Column(name = "emp_address")
     private String empAddress;
 
+    @Column(name = "password")
+    private String empPassword;
+
     @Column(name = "emp_dept")
     private Integer empDept;
     /*@OneToOne(targetEntity=Address.class, cascade=ALL, mappedBy="emp_id", fetch=FetchType.LAZY)

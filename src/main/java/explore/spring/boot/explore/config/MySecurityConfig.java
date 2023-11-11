@@ -1,5 +1,6 @@
 package explore.spring.boot.explore.config;
 
+import explore.spring.boot.explore.dao.impl.UserLoadServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 
 @EnableWebSecurity(debug = true)
@@ -19,8 +21,17 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
+    @Autowired
+    private UserLoadServiceImpl userLoadServiceImpl;
+
+    //InMemory-WORKING ONE
+   @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+       auth.userDetailsService(userLoadServiceImpl).passwordEncoder(passwordEncoder);
+
+
+       /*
         //Creating user
         UserDetails chehel = User
                 .withUsername("chahel")
@@ -34,8 +45,31 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         inMemoryUserDetailsManager.createUser(chehel);
 
         //Informing through which service savign the user (InMemoryUserDetailsManager)
-        auth.userDetailsService(inMemoryUserDetailsManager);
+        auth.userDetailsService(inMemoryUserDetailsManager);*/
     }
+
+    /*@Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //Creating user
+        UserDetails chahel = User
+                .withUsername("chahel")
+                //.password("{bcrypt}$2a$10$jm8looy2si0.8tAl6rHkuuqPQHFX9QXQqQvOl9pePhQS6mJNr8NgO") //password : chahel123 (NOT working)
+                .password("chahel123") //Changed to NoOpPasswordEncoder from Bcrypt
+                .roles("ADMIN","USER")
+                .build();
+
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder);
+
+        //Saving user
+        *//*JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
+        jdbcUserDetailsManager.createUser(chahel);*//*
+
+        ////Informing through which service saving the user (JdbcUserDetailsManager)
+        *//*auth.userDetailsService(jdbcUserDetailsManager);*//*
+    }*/
+
 
     //Working ONE
     /*@Override
