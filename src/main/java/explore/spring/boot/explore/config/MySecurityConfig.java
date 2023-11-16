@@ -100,6 +100,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin();
     }
 
+
     //Working one.
     /*@Override
     protected void configure(HttpSecurity http) throws Exception {
