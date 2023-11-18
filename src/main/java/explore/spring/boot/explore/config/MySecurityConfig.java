@@ -1,6 +1,7 @@
 package explore.spring.boot.explore.config;
 
 import explore.spring.boot.explore.dao.impl.UserLoadServiceImpl;
+import explore.spring.boot.explore.filter.MyAuthenticationLoggerFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @EnableWebSecurity(debug = true)
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
@@ -89,6 +91,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .addFilterAfter(new MyAuthenticationLoggerFilter(),BasicAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/emps","/emp/*").authenticated()
                 .and()
