@@ -1,0 +1,3 @@
+2023-11-23 17:20:51 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Starting ExploreSpringBootApplication using Java 21 on Dhananjays-Air with PID 3097 (/Users/dhananjay/Documents/intellij/projects/explore-spring-boot/target/classes started by dhananjay in /Users/dhananjay/Documents/intellij/projects/explore-spring-boot)
+2023-11-23 17:20:51 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - No active profile set, falling back to 1 default profile: "default"
+2023-11-23 17:20:53 [restartedMain] INFO  e.s.b.e.ExploreSpringBootApplication - Started ExploreSpringBootApplication in 2.482 seconds (JVM running for 2.897)
