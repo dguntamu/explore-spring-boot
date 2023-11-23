@@ -1,5 +1,6 @@
 package explore.spring.boot.explore.config;
 
+import explore.spring.boot.explore.authenticationprovider.MyCustomBasicAuthenticationProvider;
 import explore.spring.boot.explore.dao.impl.UserLoadServiceImpl;
 import explore.spring.boot.explore.filter.MyAuthenticationLoggerFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,17 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserLoadServiceImpl userLoadServiceImpl;
 
-    //InMemory-WORKING ONE
-   @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Autowired
+    private MyCustomBasicAuthenticationProvider myCustomBasicAuthenticationProvider;
 
-       auth.userDetailsService(userLoadServiceImpl).passwordEncoder(passwordEncoder);
+    //InMemory-WORKING ONE
+//   @Override
+    protected void configure1(AuthenticationManagerBuilder auth) throws Exception {
+
+       //auth.userDetailsService(userLoadServiceImpl).passwordEncoder(passwordEncoder);
+
+       //Below is used bcz created custom provider (MyCustomBasicAuthenticationProvider.java) and commenting above userDetailsService(-)
+       auth.authenticationProvider(myCustomBasicAuthenticationProvider);
 
 
        /*
@@ -74,19 +81,19 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     //Working ONE
-    /*@Override
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder) //Created @Bean definition in MyAppConfig.java, check for implementation class.
                 .withUser("dhanu")
-                //.password("dhanu123")// this is for NoOpPasswordEncoder.
-                *//*.password("{bcrypt}$2a$10$zthK5GVCFrW0gxyydg.qe.7H8ntEFztT1QM3tBUIi0ALPaNVgPouq") //its a BCrypted password for 'dhanu123'
-                 //https://www.bcryptcalculator.com/encode generated from here.*//*
+                .password("dhanu123")// this is for NoOpPasswordEncoder.
+                //.password("{bcrypt}$2a$10$zthK5GVCFrW0gxyydg.qe.7H8ntEFztT1QM3tBUIi0ALPaNVgPouq") //its a BCrypted password for 'dhanu123'
+                 //https://www.bcryptcalculator.com/encode generated from here.
                 //its a BCrypted password for 'dhanu123' bcz impl is Bcrypt in MyAppConfig.java
-                .password("$2a$10$zthK5GVCFrW0gxyydg.qe.7H8ntEFztT1QM3tBUIi0ALPaNVgPouq")
+                //.password("$2a$10$zthK5GVCFrW0gxyydg.qe.7H8ntEFztT1QM3tBUIi0ALPaNVgPouq")
                 .roles("admin");
-    }*/
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

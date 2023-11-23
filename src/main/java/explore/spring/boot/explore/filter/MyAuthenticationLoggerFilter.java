@@ -11,7 +11,7 @@ public class MyAuthenticationLoggerFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication.isAuthenticated()){
+        if(authentication !=null && authentication.isAuthenticated()){
             log.info("User {} ",authentication.getName()+" is authenticated");
         }else{
             log.info("User {} ",authentication.getName()+" is NOT yet authenticated");

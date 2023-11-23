@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,8 +52,20 @@ public class ExploreSpringBootController {
         employeeService.updateEmpployee(employeeDTO);
     }
 
+    /**
+     *
+     * @param authentication : This authentication object is provided by spring after completing below process.
+     *                       AuthenticationFilter(I)  -> UsernamePasswordAuthenticationFilter(C) --> From based login, BasicAuthenticationFilter(C) --> postman login
+     *                       AuthenticationManager(I) -> ProviderManager(C)
+     *                       AuthenticationProvider(I) -> DaoAuthenticationProvider (C)
+     *                                                    MyCustomBasicAuthenticationProvider implements AuthenticationProvider
+     *                                                    OTPAuthenicationProvider implements AuthenticationProvider
+     *                                                    ThumbImpresionAuthenticationProvider implements AuthenticationProvider
+     * @return
+     */
     @GetMapping("/emps")
-    public ResponseEntity<List<EmployeeDTO>> getEmployees(){
+    public ResponseEntity<List<EmployeeDTO>> getEmployees(Authentication authentication){
+        logger.info("User Name after FILTER CHAIN COMPLETED {} ",authentication.getPrincipal().toString()+", password : {} ",authentication.getCredentials());
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.finAllEmployees());
     }
 
